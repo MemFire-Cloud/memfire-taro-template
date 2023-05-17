@@ -61,4 +61,4 @@ create policy "允许所有人上传下载删除修改文件" on storage.objects
 update storage.buckets set public=true where id='avatars';
 
 ```
-3.在lib/supabaseClient.js文件里配置memfire cloud应用的API访问地址和anon_key
+3.在src/lib/supabaseClient.js文件里配置memfire cloud应用的API访问地址和anon_key
