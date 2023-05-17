@@ -1,0 +1,30 @@
+.btn-s-size{
+    width: 130rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+}
+.flex{
+    display: flex;
+}
+.search {
+    margin-bottom: 20px;
+  }
+  
+  .input {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  .add-btn {
+    width: 40%;
+    background-color: #07c160;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+  }
+  .table-container {
+    overflow-x: auto;
+    max-height: 1000rpx;
+  }
