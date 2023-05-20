@@ -60,7 +60,6 @@
 <script setup>
 import { ref, onMounted, h } from "vue";
 import Taro from "@tarojs/taro";
-import { supabase } from "../../lib/supabaseClient";
 import { DownloadImage } from "../../utils/commonApi";
 import "./index.scss";
 import { useStore } from "../../stores";
@@ -165,8 +164,6 @@ const updateItem = (item) => {
   visible.value = true;
 };
 const close = () => {
-  // TODO 做一些其他的事情，before-close 为true的情况下，手动执行 close 才会关闭对话框
-  // ...
   visible.value = false;
 };
 const confirm = () => {

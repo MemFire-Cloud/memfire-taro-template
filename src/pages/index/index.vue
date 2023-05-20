@@ -10,8 +10,19 @@
 
 <script setup>
 import Taro from "@tarojs/taro";
-import { ref } from "vue";
+import { ref,onMounted } from "vue";
+import { useStore } from "../../stores";
+import { supabase } from "../../lib/supabaseClient";
 import "./index.scss";
+   onMounted(async ()=>{
+    const { data: { session }, error } = await supabase
+      .auth.getSession()
+    if (!session || error) {
+      Taro.redirectTo({
+        url: '/pages/login/index'
+      })
+    }
+   }) 
     const tabLink = ((tab) => {
       if (tab === "todolist") {
         Taro.navigateTo({
@@ -27,4 +38,5 @@ import "./index.scss";
         });
       }
     })
+
 </script>

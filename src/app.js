@@ -17,6 +17,10 @@ const App = createApp({
       Taro.redirectTo({
         url: '/pages/login/index'
       })
+    } else if(!session){
+      Taro.redirectTo({
+        url: '/pages/login/index'
+      })
     } else {
       auth.setUserInfo(user.data)
       Taro.switchTab({

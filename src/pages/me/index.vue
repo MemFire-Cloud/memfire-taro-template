@@ -84,20 +84,8 @@ const loginOut = async () => {
     });
   }
 };
-const setUserInfo = async (userInfo) => {
-  // console.log(userInfo,'userInfo')
-  if (userInfo != null) {
-    if (userInfo.avatar) {
-      var avatar = await DownloadImage(userInfo.avatar);
-      console.log(userInfo.avatar, avatar, "userInfo");
-    }
-    userInfo.value = { a: "1" };
-    userInfo.value.avatar = avatar;
-    console.log(userInfo.value, "userInfo.value");
-  }
-};
 const goUserinfo = async () => {
-  Taro.redirectTo({
+  Taro.navigateTo({
     url: "/pages/userinfo/index",
   });
 };

@@ -76,7 +76,7 @@ const messages = ref(null);
 const inputTxt = ref(null);
 
 onMounted(() => {
-    const auth = useStore('auth')
+  const auth = useStore('auth')
   supabase
     .channel("public:messages")
     .on(
@@ -102,15 +102,9 @@ onMounted(() => {
     )
     .subscribe();
   //查询个人信息
-  if (auth.userInfo.id) {
+  if (auth.userInfo) {
     userInfo.value = auth.userInfo;
-  } else {
-    Taro.showToast({
-      title: "请先登录",
-      duration: 1500,
-      icon: "none",
-    });
-  }
+  } 
   //获取聊天数据
   getInitialMessages()
     .then((res) => {

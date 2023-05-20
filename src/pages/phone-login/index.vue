@@ -55,7 +55,6 @@ const sendcode = async () => {
     });
     return false;
   }
-  var time = 60;
   disabled.value = true;
   let { data, error } = await supabase.auth.signInWithOtp({
     phone: phone.value,
@@ -102,7 +101,7 @@ const submit = async () => {
         title: "登录成功,前往修改个人信息页面",
         duration: 1500,
       });
-      Taro.switchTab({
+      Taro.redirectTo({
         url: "/pages/userinfo/index",
       });
     } else {
