@@ -10,26 +10,26 @@ export default defineAppConfig({
     'pages/messages/index'
   ],
   window: {
-    backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    backgroundColor: "#FFFFFF",
+    backgroundTextStyle: "light",
+    navigationBarBackgroundColor: "#FFF",
+    navigationBarTextStyle: "black"
   },
   tabBar: {
-    color: '#7A7E83',
-    selectedColor: '#007AFF',
-    backgroundColor: '#F8F8F8',
+    color: "#777777",
+    selectedColor: "#f76012",
+    borderStyle: "white",
     list: [
       {
         pagePath: 'pages/index/index',
-        selectedIconPath: 'images/index_on.png',
-        iconPath: 'images/index_off.png',
+        selectedIconPath: 'images/my-on.png',
+        iconPath: 'images/my-off.png',
         text: '首页',
       },
       {
         pagePath: 'pages/me/index',
-        selectedIconPath: 'images/mine_on.png',
-        iconPath: 'images/mine_off.png',
+        selectedIconPath: 'images/index-on.png',
+        iconPath: 'images/index-off.png',
         text: '我的',
       },
     ],

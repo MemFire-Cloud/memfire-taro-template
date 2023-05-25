@@ -14,7 +14,7 @@
       <block v-else>
         <view class="userinfo">
           <image
-            bindtap="bindViewTap"
+            @click="bindViewTap"
             class="userinfo-avatar"
             :src="userInfo.avatar ? userInfo.avatar : '../../images/avatar.png'"
             mode="cover"
@@ -23,15 +23,20 @@
         </view>
       </block>
     </view>
-    <view>
-      <nut-cell-group>
-        <nut-cell
-          title="完善信息"
-          is-link
-          @click="goUserinfo($event)"
-        ></nut-cell>
-        <nut-cell title="退出登录" is-link @click="loginOut($event)"></nut-cell>
-      </nut-cell-group>
+  <view class="list-wrapper"  v-if="hasUserInfo">
+    <view class="row m32 mt64"  @click="goUserInfo">
+      <view class="left-t t34">基本信息</view>
+      <view class="right-t">
+        <image src="../../images/arrow.svg" />
+      </view>
+    </view>
+
+    <view class="row m32 mt64"  @click="loginOut">
+      <view class="left-t t34">退出登录</view>
+      <view class="right-t">
+        <image src="../../images/arrow.svg" />
+      </view>
+    </view>
     </view>
   </view>
 </template>
@@ -84,7 +89,7 @@ const loginOut = async () => {
     });
   }
 };
-const goUserinfo = async () => {
+const goUserInfo = async () => {
   Taro.navigateTo({
     url: "/pages/userinfo/index",
   });
