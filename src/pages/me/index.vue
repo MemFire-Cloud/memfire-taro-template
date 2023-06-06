@@ -23,6 +23,7 @@
         </view>
       </block>
     </view>
+    <image class="active-img" src="../../images/group_assist.jpeg"  />
   <view class="list-wrapper"  v-if="hasUserInfo">
     <view class="row m32 mt64"  @click="goUserInfo">
       <view class="left-t t34">基本信息</view>

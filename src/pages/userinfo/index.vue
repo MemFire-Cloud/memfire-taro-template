@@ -18,7 +18,13 @@
         v-model="introduction"
       />
     </view>
-    <button class="submit" @click="submit">提交</button>
+    <button class="info-btn" @click="submit">提交</button>
+    <view class="footer">
+    <view class="footer__links">
+      <navigator url="https://memfire.com/">了解更多</navigator>
+    </view>
+    <view class="footer__text">Copyright © 2023 MemFire</view>
+  </view>
   </view>
 </template>
 

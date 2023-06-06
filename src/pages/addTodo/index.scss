@@ -1,47 +1,6 @@
-.btn-s-size{
-    font-size: 30rpx;
-    width: 116rpx;
-    height: 63rpx;
-    line-height: 63rpx;
+.section{
+  padding: 20rpx;
 }
-.flex{
-    display: flex;
+.section textarea{
+  width: 100%;
 }
-.search {
-    margin-bottom: 40rpx;
-  }
-  
-  .input {
-    border: 1rpx solid #ddd;
-    padding: 20rpx 40rpx;
-    border-radius: 8rpx;
-    background-color: #fff;
-  }
-  .table-container {
-    overflow-x: auto;
-    max-height: 1000rpx;
-  }
-  .nut-pagination{
-    margin-top: 20rpx;
-
-  }
-  .nut-pagination .active{
-    background: #07c160;
-  }
-  .left-radio{
-    position: absolute;
-    left: 10rpx;
-  }
-
-  .left-title{
-    font-size: 28rpx;
-    color: #818484;
-    margin-bottom: 15rpx;
-  }
-  .m-t36{
-    margin-top: 36rpx;
-  }
-  .line-through{
-    text-decoration: line-through;
-    color: #8e8e8e;
-  }

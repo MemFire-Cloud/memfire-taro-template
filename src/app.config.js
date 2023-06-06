@@ -7,7 +7,8 @@ export default defineAppConfig({
     'pages/phone-login/index',
     'pages/todolist/index',
     'pages/userinfo/index',
-    'pages/messages/index'
+    'pages/messages/index',
+    'pages/addTodo/index'
   ],
   window: {
     backgroundColor: "#FFFFFF",

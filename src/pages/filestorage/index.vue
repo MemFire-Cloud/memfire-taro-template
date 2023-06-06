@@ -1,37 +1,72 @@
 <template>
-  <view class="container">
-    <view class="category">
-      <view class="title">文件分类</view>
-      <view class="list">
-        <view
-          :class="activeItem === item.id ? 'selected item-st' : 'item-st'"
-          @click="handertab(item.id)"
-          v-for="(item, index) in btnList"
-          :key="index"
-        >
-          {{ item.name }}
+  <view>
+    <nut-tabs swipeable v-model="activeItem" @change="onChangeTab">
+      <nut-tabpane title="全部" pane-key="0">
+        <view class="f-ab border-bottom" v-for="(item, index) in fileList" :key="index" @click="onOpenPop(item.name)">
+          <view class="item-box">
+            <image src="../../images/file.svg"></image>
+            <view class="content-box">
+              <text class="cell">{{ item.name }}</text>
+              <text class="t-s mt-10">{{ item.size }}</text>
+            </view>
+          </view>
+          <view class="t-s">
+            {{ item.created_at }}
+          </view>
         </view>
-      </view>
-    </view>
+      </nut-tabpane>
+      <nut-tabpane title="图片" pane-key="1">
+        <view class="f-ab border-bottom" v-for="(item, index) in fileList" :key="index" @click="onOpenPop(item.name)">
+          <view class="item-box">
+            <image src="../../images/image.svg"></image>
+            <view class="content-box">
+              <text class="cell">{{ item.name }}</text>
+              <text class="t-s mt-10">{{ item.size }}</text>
+            </view>
+          </view>
+          <view class="t-s">
+            {{ item.created_at }}
+          </view>
+        </view>
+      </nut-tabpane>
+      <nut-tabpane title="文档" pane-key="2">
+        <view class="f-ab border-bottom" v-for="(item, index) in fileList" :key="index" @click="onOpenPop(item.name)">
+          <view class="item-box">
+            <image src="../../images/file.svg"></image>
+            <view class="content-box">
+              <text class="cell">{{ item.name }}</text>
+              <text class="t-s mt-10">{{ item.size }}</text>
+            </view>
+          </view>
+          <view class="t-s">
+            {{ item.created_at }}
+          </view>
+        </view>
+      </nut-tabpane>
+      <nut-tabpane title="视频" pane-key="3">
+        <view class="f-ab border-bottom" v-for="(item, index) in fileList" :key="index" @click="onOpenPop(item.name)">
+          <view class="item-box">
+            <image src="../../images/vadio.svg"></image>
+            <view class="content-box">
+              <text class="cell">{{ item.name }}</text>
+              <text class="t-s mt-10">{{ item.size }}</text>
+            </view>
+          </view>
+          <view class="t-s">
+            {{ item.created_at }}
+          </view>
+        </view>
+      </nut-tabpane>
+    </nut-tabs>
 
-    <nut-table
-      class="table-container"
-      :columns="columns"
-      :data="fileList"
-      :striped="true"
-    >
-      <template #nodata>
-        <div class="no-data">暂无数据</div>
-      </template>
-    </nut-table>
-
-    <view class="upload-section">
-      <view class="title">上传文件</view>
-      <view class="input-group">
-        <button class="upload-btn" type="primary" @click="onUpload">选择文件</button>
-				<view class="file-info">{{ fileName ? fileName : '未选择图片' }}</view>
-      </view>
+    <view class="container2">
+      <button class="add-btn" @click="onUpload">上传</button>
     </view>
+    <nut-popup v-model:visible="show" position="bottom" custom-style="height: 30%;">
+      <view class="pop-btn" @click="downloadFile">下载</view>
+      <view class="pop-btn err-color" @click="removeFile">删除</view>
+      <view class="pop-cansel" @click="onClosePop">取消</view>
+    </nut-popup>
   </view>
 </template>
 
@@ -39,79 +74,30 @@
 import { ref, onMounted, h } from "vue";
 import Taro from "@tarojs/taro";
 import { supabase } from "../../lib/supabaseClient";
-import { DownloadImage } from "../../utils/commonApi";
 import "./index.scss";
 import {
-  UploadFile,
-  DownloadFile,
   RemoveFile,
   ListFile,
   ListProfixFile,
 } from "./api";
 const fileName = ref("");
+const show = ref(false);
 const fileList = ref([]);
-const btnList = ref([
-  { name: "全部", id: 0 },
-  { name: "图片", id: 1 },
-  { name: "文档", id: 2 },
-  { name: "视频", id: 3 },
-]);
 const activeItem = ref(0);
-const imageValue = ref("");
-const columns = ref([
-  {
-    title: "文件名",
-    key: "name",
-    render: (record) => {
-      return h("span",{class:'cell'}, record.name);
-    },
-  },
-  {
-    title: "大小",
-    key: "size",
-    render: (record) => {
-      return h(
-        "span",
-        record.size
-      );
-    },
-  },  {
-    title: "上传时间",
-    key: "created_at",
-    render: (record) => {
-      return h(
-        "span",
-        record.created_at
-      );
-    },
-  },
-  {
-    title: "操作",
-    key: "action",
-    render: (record) => {
-      return h("div", { class: "flex" }, [
-        h(
-          "button",
-          {
-            class: "btn-s-size",
-            type: "warn",
-            onClick: () => removeFile(record.name),
-          },
-          "删除"
-        ),
-        h(
-          "button",
-          { type: "default", class: "btn-s-size", onClick: () => downloadFile(record.name) },
-          "下载"
-        ),
-      ]);
-    },
-  },
-]);
-onMounted(()=>{
+const itemFileName = ref("");
+
+onMounted(() => {
   getListFile();
 })
-const downloadFile = async (name) => {
+const onClosePop = () => {
+  show.value = false
+}
+const onOpenPop = (name) => {
+  show.value = true;
+  itemFileName.value = name;
+}
+const downloadFile = async () => {
+  const name = itemFileName.value
   const { data, error } = await supabase.storage
     .from("files")
     .createSignedUrl(name, 60);
@@ -194,6 +180,7 @@ const downloadFile = async (name) => {
           },
         });
       }
+      show.value = false
     },
   });
 };
@@ -210,9 +197,8 @@ const getListFile = () => {
       });
     });
 };
-const handertab = (id) => {
-  activeItem.value = id;
-  ListProfixFile(btnList.value[activeItem.value].name)
+const onChangeTab = (e) => {
+  ListProfixFile(e.title)
     .then((res) => {
       fileList.value = res;
     })
@@ -224,7 +210,8 @@ const handertab = (id) => {
       });
     });
 };
-const removeFile = async (name) => {
+const removeFile = async () => {
+  const name = itemFileName.value
   RemoveFile(name)
     .then((res) => {
       Taro.showToast({
@@ -233,6 +220,7 @@ const removeFile = async (name) => {
         duration: 2000,
       });
       getListFile();
+      show.value = false
     })
     .catch((err) => {
       Taro.showToast({
@@ -271,7 +259,6 @@ const onUpload = () => {
           icon: "none",
           duration: 2000,
         });
-
         ListFile();
       }
     },

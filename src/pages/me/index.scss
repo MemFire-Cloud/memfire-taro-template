@@ -1,58 +1,65 @@
 .head-height {
-    height: 240rpx;
-  }
-  
-  .head {
-    display:flex;
-    width: 100%;
-    align-items: center;
-  }
-  
-  .login-button {
-    opacity: 0; 
-    width: 100%;
-    position: fixed;
-  }
-  
-  .userinfo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    position: fixed;
-  }
-  
-  .userinfo-avatar {
-    width: 150rpx;
-    height: 150rpx;
-    margin: 30rpx;
-    border-radius: 50%;
-  }
-  
-  .userinfo-nickname {
-    color: #fff;
-    font-size: 42rpx;
-  }
-  .row{
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
-    padding: 38rpx 17rpx 24rpx 0;
-    font-size: 43rpx;
-  }
-  .m32{
-    margin: 0 32rpx;
-  }
-  .left-t{
-    color: #000000;
-  }
-  .t34{
-    font-size: 34rpx;
-  }
-  .right-t{
-    color: #7F7F7F;
-  }
-  .right-t image{
-    width: 14rpx;
-    height: 26rpx;
-  }
+  height: 240rpx;
+}
+
+.head {
+  display:flex;
+  width: 100%;
+  align-items: center;
+}
+
+.login-button {
+  opacity: 0; 
+  width: 100%;
+  position: fixed;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 30rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  font-size: 42rpx;
+}
+.list-wrapper {
+  width: 100%;
+}
+
+.row{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+  padding: 38rpx 17rpx 24rpx 0;
+  font-size: 43rpx;
+}
+.m32{
+  margin: 0 32rpx;
+}
+.left-t{
+  color: #000000;
+}
+.t34{
+  font-size: 34rpx;
+}
+.right-t{
+  color: #7F7F7F;
+}
+.right-t image{
+  width: 14rpx;
+  height: 26rpx;
+}
+.active-img{
+  width: 750rpx;
+  height: 250rpx;
+}
